@@ -1,20 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  	<iframe id="main_display"/>
+	<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyCSai8Piw3IOBFmAwVL046BlGUhgVKiZGI",
+			authDomain: "homer-thd-poc.firebaseapp.com",
+			databaseURL: "https://homer-thd-poc.firebaseio.com",
+			storageBucket: "homer-thd-poc.appspot.com",
+			messagingSenderId: "855061500297"
+		};
+		firebase.initializeApp(config);
 
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCSai8Piw3IOBFmAwVL046BlGUhgVKiZGI",
-    authDomain: "homer-thd-poc.firebaseapp.com",
-    databaseURL: "https://homer-thd-poc.firebaseio.com",
-    storageBucket: "homer-thd-poc.appspot.com",
-    messagingSenderId: "855061500297"
-  };
-  firebase.initializeApp(config);
-
-  var database = firebase.database();
-  
-  var currentSiteUrlRef = firebase.database().ref('current_site/url');
-  currentSiteUrlRef.on('value', function(snapshot) {
-    console.log(snapshot.val());
-  });
-</script>
+		var database = firebase.database();
+	  
+		var currentSiteUrlRef = firebase.database().ref('current_site/url');
+		currentSiteUrlRef.on('value', function(snapshot) {
+			console.log(snapshot.val());
+			document.getElementById("main_display").setAttribute("src", snapshot.val());
+		});
+	</script>
+  </body>
+</html>
